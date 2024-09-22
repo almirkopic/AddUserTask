@@ -1,5 +1,4 @@
-// src/models/User.ts
-
+// src/User.ts
 export interface PhoneNumber {
   type: string;
   value: string;
@@ -10,5 +9,4 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumbers: PhoneNumber[];
-}
+  phoneNumbers: PhoneNumber[]; 
