@@ -1,17 +1,17 @@
+// src/server.ts
+
 import express from "express";
+import cors from "cors";
+import { initialUsers } from "./src/initialData";
+import { User } from "./src/User";
 
 const app = express();
 const port = 3001;
 
-// Define a root route
-app.get("/", (req, res) => {
-  res.send("Welcome to the API!");
-});
+app.use(cors());
 
-// Define your data route
-app.get("/data", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.json({ foo: "bar" });
+app.get("/users", (req, res) => {
+  res.json(initialUsers);
 });
 
 app.listen(port, () => {
