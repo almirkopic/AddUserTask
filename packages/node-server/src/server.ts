@@ -1,19 +1,15 @@
 import express from "express";
+import cors from "cors";
+import userRoutes from "./src/routes/users";
 
 const app = express();
 const port = 3001;
 
-// Define a root route
-app.get("/", (req, res) => {
-  res.send("Welcome to the API!");
-});
+app.use(cors());
+app.use(express.json());
 
-// Define your data route
-app.get("/data", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.json({ foo: "bar" });
-});
+app.use("/users", userRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
