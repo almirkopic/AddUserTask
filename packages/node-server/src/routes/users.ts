@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { User } from "../User"; // Putanja do User.ts
-import { initialUsers } from "../data/initialData"; // Putanja do initialData.ts
+import { User } from "../User";
+import { initialUsers } from "../data/initialData";
 
 const router = Router();
 let users: User[] = initialUsers;
