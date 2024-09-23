@@ -1,19 +1,15 @@
-// src/server.ts
-
 import express from "express";
 import cors from "cors";
-import { initialUsers } from "./src/initialData";
-import { User } from "./src/User";
+import userRoutes from "./src/routes/users"; // Importuj rute
 
 const app = express();
 const port = 3001;
 
 app.use(cors());
+app.use(express.json());
 
-app.get("/users", (req, res) => {
-  res.json(initialUsers);
-});
+app.use("/users", userRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
