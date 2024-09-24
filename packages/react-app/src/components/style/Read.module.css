@@ -1,0 +1,63 @@
+.container {
+  max-width: 600px;
+  margin: 30vh auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+  text-align: center;
+  color: #333;
+  font-size: 1.7rem;
+}
+
+.details {
+  margin: 15px 0;
+}
+
+.details strong {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  padding: 9px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.backLink:hover {
+  background-color: #52a8f3;
+}
+
+.editLink {
+  background-color: #01ad79;
+  color: white;
+  padding: 9px 35px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.editLink:hover {
+  background-color: #43b8ae;
+}
+
+.editLink:focus {
+  outline: none;
+}
