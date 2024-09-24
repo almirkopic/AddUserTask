@@ -15,13 +15,13 @@ const users: User[] = initialData.map((item, index) => ({
   phoneNumbers: item.phoneNumbers,
 }));
 
-// GET /users - vrati sve korisnike
+// GET /users -
 router.get("/", (req, res) => {
   const { query, email, phoneNumber } = req.query;
 
   let filteredUsers = users;
 
-  // Filter korisnika po pretrazi
+  // Filter
   if (query) {
     const searchTerm = query as string;
     filteredUsers = filteredUsers.filter(
@@ -48,7 +48,7 @@ router.get("/", (req, res) => {
   res.json(filteredUsers);
 });
 
-// GET /users/:id - vrati korisnika po ID
+// GET /users/:id
 router.get("/:id", (req, res) => {
   const user = users.find((user) => user._id === req.params.id);
   if (user) {
@@ -58,7 +58,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-// POST /users - kreiraj novog korisnika
+// POST /users -
 router.post("/", (req, res) => {
   const { firstName, lastName, email, phoneNumbers }: User = req.body;
 
@@ -89,7 +89,7 @@ router.put("/:id", (req, res) => {
   }
 });
 
-// DELETE /users/:id - obriši korisnika
+// DELETE /users/:id -
 router.delete("/:id", (req, res) => {
   const userIndex = users.findIndex((user) => user._id === req.params.id);
   if (userIndex !== -1) {
