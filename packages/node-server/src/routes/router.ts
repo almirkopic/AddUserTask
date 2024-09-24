@@ -1,6 +1,6 @@
 // src/routes/router.ts
 import { Router } from "express";
-import { User } from "../models/User"; // Uverite se da je putanja ispravna
+import { User } from "../models/User";
 import { initialData, namesArray } from "../data/initialData";
 import { v4 as uuidv4 } from "uuid";
 
@@ -8,7 +8,7 @@ const router = Router();
 
 // Merge initialData i namesArray
 const users: User[] = initialData.map((item, index) => ({
-  _id: uuidv4(), // Generiši jedinstveni ID
+  _id: uuidv4(), // generate ID
   firstName: namesArray[index].firstName,
   lastName: namesArray[index].lastName,
   email: item.email,
@@ -77,7 +77,7 @@ router.post("/", (req, res) => {
   res.status(201).json(newUser);
 });
 
-// PUT /users/:id - ažuriraj korisnika
+// PUT /users/:id -
 router.put("/:id", (req, res) => {
   const userIndex = users.findIndex((user) => user._id === req.params.id);
   if (userIndex !== -1) {
