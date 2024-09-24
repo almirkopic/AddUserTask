@@ -1,114 +1,65 @@
-// src/data/initialData.ts
+import { User } from "../models/User";
 
-import { User } from "../User";
-
-export const initialUsers: User[] = [
+export const initialData = [
   {
-    _id: "1",
-    firstName: "Marina",
-    lastName: "Wiline",
     email: "marina@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0105",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0105" }],
   },
   {
-    _id: "2",
-    firstName: "Kip",
-    lastName: "Wiline",
     email: "kip@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0168",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0168" }],
   },
   {
-    _id: "3",
-    firstName: "Lorie",
-    lastName: "Wiline",
     email: "lorie@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0162",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0162" }],
   },
   {
-    _id: "4",
-    firstName: "Jasmin",
-    lastName: "Wiline",
     email: "jasmin@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0168",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0168" }],
   },
   {
-    _id: "5",
-    firstName: "Emma",
-    lastName: "Wiline",
     email: "emma@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0187",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0187" }],
   },
   {
-    _id: "6",
-    firstName: "Elvia",
-    lastName: "Wiline",
     email: "elvia@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0164",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0164" }],
   },
   {
-    _id: "7",
-    firstName: "Liliana",
-    lastName: "Wiline",
     email: "liliana@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0161",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0161" }],
   },
   {
-    _id: "8",
-    firstName: "Florencio",
-    lastName: "Wiline",
     email: "florencio@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0127",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0127" }],
   },
   {
-    _id: "9",
-    firstName: "Delores",
-    lastName: "Wiline",
     email: "delores@wiline.com",
-    phoneNumbers: [
-      {
-        type: "primary",
-        value: "202-555-0143",
-      },
-    ],
+    phoneNumbers: [{ type: "primary", value: "202-555-0143" }],
   },
 ];
+
+// second array wasn't provided in task but I created
+
+export const namesArray = [
+  { firstName: "Marina", lastName: "Brown" },
+  { firstName: "Kip", lastName: "Johnes" },
+  { firstName: "Lorie", lastName: "Gonsales" },
+  { firstName: "Jasmin", lastName: "Morales" },
+  { firstName: "Emma", lastName: "Smith" },
+  { firstName: "Elvia", lastName: "Moreno" },
+  { firstName: "Liliana", lastName: "Sanchez" },
+  { firstName: "Florencio", lastName: "Hernandez" },
+  { firstName: "Delores", lastName: "Brown" },
+];
+
+// merge 2 array function
+export const mergeUsers = (): User[] => {
+  return initialData.map((user, index) => ({
+    _id: `user-${index + 1}`, // ID generate
+    firstName: namesArray[index].firstName,
+    lastName: namesArray[index].lastName,
+    email: user.email,
+    phoneNumbers: user.phoneNumbers,
+  }));
+};
