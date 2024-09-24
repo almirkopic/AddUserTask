@@ -15,13 +15,13 @@ const users: User[] = initialData.map((item, index) => ({
   phoneNumbers: item.phoneNumbers,
 }));
 
-// GET /users -
+// GET /users
 router.get("/", (req, res) => {
   const { query, email, phoneNumber } = req.query;
 
   let filteredUsers = users;
 
-  // Filter
+  // Filter search user by name/phone..
   if (query) {
     const searchTerm = query as string;
     filteredUsers = filteredUsers.filter(
@@ -77,7 +77,7 @@ router.post("/", (req, res) => {
   res.status(201).json(newUser);
 });
 
-// PUT /users/:id -
+// PUT /users/:id - update user
 router.put("/:id", (req, res) => {
   const userIndex = users.findIndex((user) => user._id === req.params.id);
   if (userIndex !== -1) {

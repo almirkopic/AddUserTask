@@ -7,17 +7,17 @@ const uuid_1 = require("uuid");
 const router = (0, express_1.Router)();
 // Merge initialData i namesArray
 const users = initialData_1.initialData.map((item, index) => ({
-    _id: (0, uuid_1.v4)(), // Generiši jedinstveni ID
+    _id: (0, uuid_1.v4)(), // generate ID
     firstName: initialData_1.namesArray[index].firstName,
     lastName: initialData_1.namesArray[index].lastName,
     email: item.email,
     phoneNumbers: item.phoneNumbers,
 }));
-// GET /users - vrati sve korisnike
+// GET /users
 router.get("/", (req, res) => {
     const { query, email, phoneNumber } = req.query;
     let filteredUsers = users;
-    // Filter korisnika po pretrazi
+    // Filter search user by name/phone..
     if (query) {
         const searchTerm = query;
         filteredUsers = filteredUsers.filter((user) => user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,7 +33,7 @@ router.get("/", (req, res) => {
     }
     res.json(filteredUsers);
 });
-// GET /users/:id - vrati korisnika po ID
+// GET /users/:id
 router.get("/:id", (req, res) => {
     const user = users.find((user) => user._id === req.params.id);
     if (user) {
@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
         res.status(404).json({ message: "User not found" });
     }
 });
-// POST /users - kreiraj novog korisnika
+// POST /users -
 router.post("/", (req, res) => {
     const { firstName, lastName, email, phoneNumbers } = req.body;
     const newUser = {
@@ -59,7 +59,7 @@ router.post("/", (req, res) => {
     users.push(newUser);
     res.status(201).json(newUser);
 });
-// PUT /users/:id - ažuriraj korisnika
+// PUT /users/:id - update user
 router.put("/:id", (req, res) => {
     const userIndex = users.findIndex((user) => user._id === req.params.id);
     if (userIndex !== -1) {
@@ -71,7 +71,7 @@ router.put("/:id", (req, res) => {
         res.status(404).json({ message: "User not found" });
     }
 });
-// DELETE /users/:id - obriši korisnika
+// DELETE /users/:id -
 router.delete("/:id", (req, res) => {
     const userIndex = users.findIndex((user) => user._id === req.params.id);
     if (userIndex !== -1) {

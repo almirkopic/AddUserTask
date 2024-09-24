@@ -1,4 +1,5 @@
-// Modal.tsx
+// Modal.tsx  Delete modal
+
 import React from "react";
 import styles from "../style/Home.module.css";
 
