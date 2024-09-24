@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios, { AxiosError } from "axios";
 import styles from "./style/Home.module.css";
 import { Link } from "react-router-dom";
-import { User } from "./types/types";
+import { User } from "./types/User";
 import Modal from "./home/Modal";
 
 const Home: React.FC = () => {
@@ -12,6 +12,7 @@ const Home: React.FC = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
+  // Fetching users from the backend API
   const fetchData = async () => {
     try {
       const res = await axios.get<User[]>("http://localhost:3001/users");
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
     fetchData();
   }, []);
 
+  // Handling search functionality
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
@@ -43,6 +45,7 @@ const Home: React.FC = () => {
     );
   };
 
+  // Handling user deletion
   const handleDelete = async (id: string) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
@@ -50,7 +53,7 @@ const Home: React.FC = () => {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:3001/users/${id}`);
-        fetchData();
+        fetchData(); // Refresh data after deletion
         setModalMessage("User successfully deleted!");
         setModalVisible(true);
       } catch (err) {
@@ -143,11 +146,18 @@ const UserRow: React.FC<UserRowProps> = ({ user, index, onDelete }) => (
     <td>{user.lastName}</td>
     <td>{user.email}</td>
     <td>
-      {user.phoneNumbers.map((phone, idx) => (
-        <div key={`${user._id}-${idx}`}>
-          {phone.value} ({phone.type})
-        </div>
-      ))}
+      {user.phoneNumbers.map((phone, idx) => {
+        // Check if the phone number value exists before rendering
+        if (phone.value) {
+          return (
+            <div key={`${user._id}-${idx}`}>
+              {phone.value}
+              <span className={styles.phoneType}>({phone.type})</span>
+            </div>
+          );
+        }
+        return null; // Do not render anything if there is no value
+      })}
     </td>
     <td className={styles.btnContainer}>
       <Link to={`/read/${user._id}`} className={styles.read}>

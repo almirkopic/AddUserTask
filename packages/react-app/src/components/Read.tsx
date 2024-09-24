@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { User } from "./types/types";
+import { User } from "./types/User";
 import styles from "./style/Read.module.css";
 
 const Read: React.FC = () => {
@@ -40,8 +40,14 @@ const Read: React.FC = () => {
           <strong>Email: </strong> {user.email}
         </div>
         <div>
-          <strong>Phone: </strong> {user.phoneNumbers[0]?.value}
+          <strong>Primary Phone: </strong> {user.phoneNumbers[0]?.value}
         </div>
+
+        {user.phoneNumbers[1]?.value && (
+          <div>
+            <strong>Secondary Phone: </strong> {user.phoneNumbers[1].value}
+          </div>
+        )}
       </div>
       <Link to={`/update/${user._id}`} className={styles.editLink}>
         Edit

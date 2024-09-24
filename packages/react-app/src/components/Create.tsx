@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserForm from "./UserForm";
-import { User } from "./types/types";
+import { User } from "./types/User";
 
 const Create: React.FC = () => {
   const [user, setUser] = useState<User>({
-    _id: "", // ID gen on srv
+    _id: "", // ID generated on server
     firstName: "",
     lastName: "",
     email: "",
-    phoneNumbers: [{ type: "primary", value: "" }],
+    phoneNumbers: [
+      { type: "primary", value: "" },
+      { type: "secondary", value: "" },
+    ],
   });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

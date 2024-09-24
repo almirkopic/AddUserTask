@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "./types/types";
+import { User } from "./types/User";
 import { Link } from "react-router-dom";
 import classes from "./style/UserForm.module.css";
 
@@ -24,7 +24,23 @@ const UserForm: React.FC<UserFormProps> = ({
 
   const handlePhoneChange = (index: number, value: string) => {
     const updatedPhones = [...user.phoneNumbers];
+
+    // Ensure there are at least two phone number entries
+    while (updatedPhones.length <= index) {
+      updatedPhones.push({
+        type: index === 0 ? "primary" : "secondary",
+        value: "",
+      });
+    }
+
+    // Update the phone number value
     updatedPhones[index].value = value;
+
+    // Remove the secondary phone if it is cleared
+    if (index === 1 && value === "") {
+      updatedPhones.splice(1, 1);
+    }
+
     setUser({ ...user, phoneNumbers: updatedPhones });
   };
 
@@ -40,6 +56,7 @@ const UserForm: React.FC<UserFormProps> = ({
             value={user.firstName}
             onChange={handleChange}
             required
+            placeholder="required"
           />
         </div>
         <div>
@@ -50,6 +67,7 @@ const UserForm: React.FC<UserFormProps> = ({
             value={user.lastName}
             onChange={handleChange}
             required
+            placeholder="required"
           />
         </div>
         <div>
@@ -60,20 +78,27 @@ const UserForm: React.FC<UserFormProps> = ({
             value={user.email}
             onChange={handleChange}
             required
+            placeholder="required"
           />
         </div>
         <div>
-          <label>Phone Numbers:</label>
-          {user.phoneNumbers.map((phone, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                value={phone.value}
-                onChange={(e) => handlePhoneChange(index, e.target.value)}
-                required
-              />
-            </div>
-          ))}
+          <label>Primary Phone Number:</label>
+          <input
+            type="text"
+            value={user.phoneNumbers[0]?.value || ""}
+            onChange={(e) => handlePhoneChange(0, e.target.value)}
+            required
+            placeholder="required"
+          />
+        </div>
+        <div>
+          <label>Secondary Phone Number:</label>
+          <input
+            type="text"
+            value={user.phoneNumbers[1]?.value || ""}
+            onChange={(e) => handlePhoneChange(1, e.target.value)}
+            placeholder="optional"
+          />
         </div>
         <button type="submit" className={classes.submitBtn}>
           {buttonText}

@@ -129,3 +129,9 @@ th {
   text-decoration: none;
   cursor: pointer;
 }
+
+.phoneType {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+}
