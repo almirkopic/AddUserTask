@@ -21,7 +21,7 @@ const validateUser = (user) => {
 router.get("/", (req, res) => {
     res.json(users);
 });
-// POST / - kreiraj novog korisnika
+// POST /
 router.post("/", (req, res) => {
     const { firstName, lastName, email, phoneNumbers } = req.body;
     // val

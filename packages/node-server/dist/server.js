@@ -11,6 +11,9 @@ const port = 3001;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use("/users", users_1.default);
+app.get("/", (req, res) => {
+    res.send("Welcome to the User API");
+});
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
