@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+# addUser
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# AddUserTask
 
-In the project directory, you can run:
+## Description
+**AddUserTask** is an application for adding and managing user data. It allows users to enter their information, display it in a tabular format, as well as edit or delete the data.
 
-### `yarn start`
+## Requirements
+- **Node.js** (v14 or newer)
+- **Yarn** (recommended for package management)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/almirkopic/AddUserTask.git
+   cd AddUserTask
+   ```
 
-### `yarn test`
+2. **Navigate to the main directory** `AddUserTask` and open a new terminal.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. **Install dependencies** in the `AddUserTask` directory:
+   ```bash
+   yarn install
+   ```
 
-### `yarn build`
+4. **Navigate to the `node-server` directory**:
+   ```bash
+   cd node-server
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. **Start the back-end server**:
+   ```bash
+   yarn start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. **Open another terminal and navigate to the `react-app` directory**:
+   ```bash
+   cd ../react-app
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+7. **Start the front-end application**:
+   ```bash
+   yarn start
+   ```
 
-### `yarn eject`
+8. **Open your web browser and go to** `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## For macOS
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Open your terminal and run the following command to install Homebrew**:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. **Install Yarn**:
+   - You can choose one of the following commands to install Yarn:
+     ```bash
+     brew install yarn  # Using Homebrew
+     ```
+     or
+     ```bash
+     npm install --global yarn  # Using npm
+     ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. **Navigate to the `node-server` directory and run**:
+   ```bash
+   yarn start
+   ```
 
-## Learn More
+4. **Navigate to the `react-app` directory and run**:
+   ```bash
+   yarn start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
+Once both the back-end and front-end are running, you can manage user data through the application interface.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+
