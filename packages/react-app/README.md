@@ -1,8 +1,6 @@
 # addUser
 
 
-# AddUserTask
-
 ## Description
 **AddUserTask** is an application for adding and managing user data. It allows users to enter their information, display it in a tabular format, as well as edit or delete the data.
 
