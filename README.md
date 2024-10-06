@@ -15,19 +15,21 @@
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/almirkopic/AddUserTask.git
-   cd AddUserTask
+   
    ```
 
-2. **Navigate to the main directory** `AddUserTask` and open a new terminal.
+2. **Navigate to the main directory  ** `cd AddUserTask`.
 
 3. **Install dependencies** in the `AddUserTask` directory:
    ```bash
-   yarn install
+   npm install -g yarn   than     yarn install
+
    ```
 
-4. **Navigate to the `node-server` directory**:
+4. **Navigate to the `node-server` directory** :
    ```bash
-   cd node-server
+   cd packages/node-server
+
    ```
 
 5. **Start the back-end server**:
@@ -37,7 +39,7 @@
 
 6. **Open another terminal and navigate to the `react-app` directory**:
    ```bash
-   cd ../react-app
+   cd packages/react-app
    ```
 
 7. **Start the front-end application**:
