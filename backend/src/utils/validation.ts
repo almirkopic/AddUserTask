@@ -7,7 +7,7 @@ export const validateEmail = (email: string): boolean => {
 
 export const validatePhoneNumber = (phoneNumber: string): boolean => {
   const cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
-  const regex = /^[0-9]{10,15}$/;
+  const regex = /^[0-9]{8,17}$/;
   return regex.test(cleanedPhoneNumber);
 };
 
