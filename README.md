@@ -19,7 +19,7 @@
 
 2.1 **Navigate to the directory  ** `cd backend`.
 
-**Install dependencies** in the `AddUserTask` directory:
+**Install dependencies** in the `AddUserTask/backend` directory:
    ```bash
    npm install 
 ```
@@ -27,7 +27,7 @@ Start server with - npm run dev
 
 2.2 **Navigate to the directory  ** `cd frontend`.
 
-**Install dependencies** in the `AddUserTask` directory:
+**Install dependencies** in the `AddUserTask/frontend` directory:
    ```bash
    npm install 
 ```
