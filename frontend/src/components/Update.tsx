@@ -17,6 +17,7 @@ const Update: React.FC = () => {
     ],
   });
   const navigate = useNavigate();
+  const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -45,6 +46,7 @@ const Update: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors([]);
 
     // Filter out any empty phone numbers before submitting
     const filteredUser = {
@@ -55,8 +57,12 @@ const Update: React.FC = () => {
     try {
       await axios.put(`http://localhost:3001/users/${id}`, filteredUser);
       navigate("/");
-    } catch (err) {
-      console.error("Error updating user:", err);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.data?.errors) {
+        setErrors(error.response.data.errors);
+      } else {
+        setErrors(["An unexpected error occurred"]);
+      }
     }
   };
 
@@ -67,6 +73,7 @@ const Update: React.FC = () => {
       title="Update User"
       buttonText="Update"
       onSubmit={handleSubmit}
+      errors={errors}
     />
   );
 };

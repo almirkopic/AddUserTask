@@ -9,6 +9,7 @@ interface UserFormProps {
   title: string;
   buttonText: string;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  errors?: string[];
 }
 
 const UserForm: React.FC<UserFormProps> = ({
@@ -17,6 +18,7 @@ const UserForm: React.FC<UserFormProps> = ({
   title,
   buttonText,
   onSubmit,
+  errors,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -47,7 +49,19 @@ const UserForm: React.FC<UserFormProps> = ({
   return (
     <div className={classes.container}>
       <h1>{title}</h1>
-      <form onSubmit={onSubmit}>
+
+      {errors && errors.length > 0 && (
+        <div className={classes.errorContainer}>
+          <ul>
+            {errors.map((error, index) => (
+              <li key={index} className={classes.errorItem}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <form onSubmit={onSubmit} noValidate>
         <div>
           <label>First name:</label>
           <input
@@ -55,7 +69,6 @@ const UserForm: React.FC<UserFormProps> = ({
             name="firstName"
             value={user.firstName}
             onChange={handleChange}
-            required
             placeholder="required"
           />
         </div>
@@ -66,7 +79,6 @@ const UserForm: React.FC<UserFormProps> = ({
             name="lastName"
             value={user.lastName}
             onChange={handleChange}
-            required
             placeholder="required"
           />
         </div>
@@ -77,7 +89,6 @@ const UserForm: React.FC<UserFormProps> = ({
             name="email"
             value={user.email}
             onChange={handleChange}
-            required
             placeholder="required"
           />
         </div>
@@ -87,7 +98,6 @@ const UserForm: React.FC<UserFormProps> = ({
             type="text"
             value={user.phoneNumbers[0]?.value || ""}
             onChange={(e) => handlePhoneChange(0, e.target.value)}
-            required
             placeholder="required"
           />
         </div>

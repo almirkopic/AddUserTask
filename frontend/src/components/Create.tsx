@@ -6,7 +6,7 @@ import { User } from "./types/User";
 
 const Create: React.FC = () => {
   const [user, setUser] = useState<User>({
-    _id: "", // ID generated on server
+    _id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -16,15 +16,22 @@ const Create: React.FC = () => {
     ],
   });
 
+  const [errors, setErrors] = useState<string[]>([]);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors([]); // Reset errors
     try {
       await axios.post("http://localhost:3001/users", user);
       navigate("/");
     } catch (error) {
-      console.error("Error adding user:", error);
+      if (axios.isAxiosError(error) && error.response?.data?.errors) {
+        setErrors(error.response.data.errors);
+      } else {
+        setErrors(["An unexpected error occurred"]);
+      }
     }
   };
 
@@ -32,9 +39,10 @@ const Create: React.FC = () => {
     <UserForm
       user={user}
       setUser={setUser}
-      title="Add a User"
+      title="Add new user"
       buttonText="Submit"
       onSubmit={handleSubmit}
+      errors={errors}
     />
   );
 };

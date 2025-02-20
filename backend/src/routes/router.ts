@@ -2,10 +2,11 @@ import { Router } from "express";
 import { User } from "../models/User";
 import { v4 as uuidv4 } from "uuid";
 import { mergeUsers } from "../utils/mergeUser";
+import { validateUserData } from "../utils/validation";
 
 const router = Router();
 
-let users: User[] = mergeUsers(); // merge function //utils/mergeUsers
+let users: User[] = mergeUsers();
 
 // GET /users
 router.get("/", (req, res) => {
@@ -65,6 +66,12 @@ router.post("/", (req, res) => {
     ],
   };
 
+  // Validate the user data before adding
+  const errors = validateUserData(newUser);
+  if (errors.length > 0) {
+    return res.status(400).json({ errors });
+  }
+
   users.push(newUser);
   res.status(201).json(newUser);
 });
@@ -74,6 +81,13 @@ router.put("/:id", (req, res) => {
   const userIndex = users.findIndex((user) => user._id === req.params.id);
   if (userIndex !== -1) {
     const updatedUser: User = { ...users[userIndex], ...req.body };
+
+    // Validate the updated user data
+    const errors = validateUserData(updatedUser);
+    if (errors.length > 0) {
+      return res.status(400).json({ errors });
+    }
+
     users[userIndex] = updatedUser;
     res.json(updatedUser);
   } else {
