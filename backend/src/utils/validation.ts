@@ -6,8 +6,9 @@ export const validateEmail = (email: string): boolean => {
 };
 
 export const validatePhoneNumber = (phoneNumber: string): boolean => {
-  const regex = /^[0-9]{8,15}$/;
-  return regex.test(phoneNumber);
+  const cleanedPhoneNumber = phoneNumber.replace(/\D/g, "");
+  const regex = /^[0-9]{10,15}$/;
+  return regex.test(cleanedPhoneNumber);
 };
 
 export const validateName = (name: string): boolean => {

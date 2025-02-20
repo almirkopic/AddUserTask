@@ -25,9 +25,23 @@ const UserForm: React.FC<UserFormProps> = ({
   };
 
   const handlePhoneChange = (index: number, value: string) => {
+    const formattedValue = value.replace(/\D/g, "");
+
+    // Ako je dužina broja veća od 3, dodaj crtice
+    let formattedPhone = formattedValue;
+    if (formattedPhone.length >= 4 && formattedPhone.length <= 6) {
+      formattedPhone = `${formattedPhone.slice(0, 3)}-${formattedPhone.slice(
+        3
+      )}`;
+    } else if (formattedPhone.length > 6) {
+      formattedPhone = `${formattedPhone.slice(0, 3)}-${formattedPhone.slice(
+        3,
+        6
+      )}-${formattedPhone.slice(6, 10)}`;
+    }
+
     const updatedPhones = [...user.phoneNumbers];
 
-    // Ensure there are at least two phone number entries
     while (updatedPhones.length <= index) {
       updatedPhones.push({
         type: index === 0 ? "primary" : "secondary",
@@ -35,10 +49,8 @@ const UserForm: React.FC<UserFormProps> = ({
       });
     }
 
-    // Update the phone number value
-    updatedPhones[index].value = value;
+    updatedPhones[index].value = formattedPhone;
 
-    // Remove the secondary phone if it is cleared
     if (index === 1 && value === "") {
       updatedPhones.splice(1, 1);
     }
