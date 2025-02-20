@@ -23,7 +23,11 @@
    ```bash
    npm install 
 ```
-Start server with - npm run dev
+
+#Start server with - npm run dev
+
+
+---------------------------
 
 2.2 **Navigate to the directory  ** `cd frontend`.
 
@@ -31,7 +35,8 @@ Start server with - npm run dev
    ```bash
    npm install 
 ```
-Start server with - npm run dev
+
+#Start server with - npm run dev
 
 
 3. **Open your web browser and go to** `http://localhost:5173`.
