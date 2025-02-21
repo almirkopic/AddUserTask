@@ -15,15 +15,18 @@ const Home: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [loading, setLoading] = useState(true); // Add loading state
 
   const fetchData = async () => {
     try {
       const res = await axios.get<User[]>(`${apiUrl}/users`);
       setData(res.data);
       setFilteredData(res.data);
+      setLoading(false); // Set loading to false once data is fetched
     } catch (err: unknown) {
       const error = err as AxiosError;
       console.error(error);
+      setLoading(false); // Set loading to false even if there's an error
     }
   };
 
@@ -46,7 +49,7 @@ const Home: React.FC = () => {
         : data
     );
   };
-  // Delete user
+
   const handleDelete = async (id: string) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
@@ -62,7 +65,7 @@ const Home: React.FC = () => {
       }
     }
   };
-  //closing modal succesfully deleted
+
   const closeModal = useCallback(() => setModalVisible(false), []);
 
   useEffect(() => {
@@ -89,12 +92,19 @@ const Home: React.FC = () => {
             Add +
           </Link>
         </div>
-        <UserList users={filteredData} onDelete={handleDelete} />
-        <Modal
-          isVisible={isModalVisible}
-          message={modalMessage}
-          onClose={closeModal}
-        />
+        {/* Show loading message if still loading */}
+        {loading ? (
+          <p className={styles.loader}>Loading data...</p>
+        ) : (
+          <>
+            <UserList users={filteredData} onDelete={handleDelete} />
+            <Modal
+              isVisible={isModalVisible}
+              message={modalMessage}
+              onClose={closeModal}
+            />
+          </>
+        )}
       </div>
     </div>
   );

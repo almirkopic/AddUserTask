@@ -139,6 +139,13 @@ th {
   font-weight: 300;
   font-size: 13px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
 @media (max-width: 1150px) {
   .innerDiv {
     width: 100%;
