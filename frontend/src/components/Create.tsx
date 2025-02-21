@@ -4,6 +4,8 @@ import axios from "axios";
 import UserForm from "./UserForm";
 import { User } from "./types/User";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Create: React.FC = () => {
   const [user, setUser] = useState<User>({
     _id: "",
@@ -24,7 +26,7 @@ const Create: React.FC = () => {
     e.preventDefault();
     setErrors([]); // Reset errors
     try {
-      await axios.post("http://localhost:3001/users", user);
+      await axios.post(`${apiUrl}/users`, user);
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.errors) {

@@ -4,6 +4,8 @@ import axios from "axios";
 import UserForm from "./UserForm";
 import { User } from "./types/User";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Update: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [user, setUser] = useState<User>({
@@ -22,7 +24,7 @@ const Update: React.FC = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get<User>(`http://localhost:3001/users/${id}`);
+        const res = await axios.get<User>(`${apiUrl}/${id}`);
 
         // Ensure phoneNumbers is always initialized
         const userData = {
@@ -55,7 +57,7 @@ const Update: React.FC = () => {
     };
 
     try {
-      await axios.put(`http://localhost:3001/users/${id}`, filteredUser);
+      await axios.put(`${apiUrl}/${id}`, filteredUser);
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.data?.errors) {

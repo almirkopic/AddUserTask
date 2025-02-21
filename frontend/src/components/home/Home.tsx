@@ -7,6 +7,8 @@ import Modal from "./Modal";
 import SearchInput from "./SearchInput";
 import UserList from "./UserList";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Home: React.FC = () => {
   const [data, setData] = useState<User[]>([]);
   const [filteredData, setFilteredData] = useState<User[]>([]);
@@ -16,7 +18,7 @@ const Home: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get<User[]>("http://localhost:3001/users");
+      const res = await axios.get<User[]>(`${apiUrl}/users`);
       setData(res.data);
       setFilteredData(res.data);
     } catch (err: unknown) {
@@ -51,7 +53,7 @@ const Home: React.FC = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3001/users/${id}`);
+        await axios.delete(`${apiUrl}/users/${id}`);
         fetchData(); // Refresh data after deletion to avoid conflict
         setModalMessage("User successfully deleted!");
         setModalVisible(true);

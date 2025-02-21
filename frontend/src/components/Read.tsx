@@ -4,6 +4,8 @@ import axios from "axios";
 import { User } from "./types/User";
 import styles from "./style/Read.module.css";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const Read: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [user, setUser] = useState<User | null>(null);
@@ -12,7 +14,7 @@ const Read: React.FC = () => {
     const fetchUser = async () => {
       console.log("Fetching user with ID:", id);
       try {
-        const res = await axios.get<User>(`http://localhost:3001/users/${id}`);
+        const res = await axios.get<User>(`${apiUrl}/users/${id}`);
         setUser(res.data);
       } catch (err) {
         console.error("Error fetching user:", err);
