@@ -140,11 +140,22 @@ th {
   font-size: 13px;
 }
 
+.loader_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
 .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
+}
+
+.loaderInfo {
+  font-style: italic;
 }
 @media (max-width: 1150px) {
   .innerDiv {

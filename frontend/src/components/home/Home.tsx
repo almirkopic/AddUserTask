@@ -94,7 +94,12 @@ const Home: React.FC = () => {
         </div>
         {/* Show loading message if still loading */}
         {loading ? (
-          <p className={styles.loader}>Loading data...</p>
+          <div>
+            <p className={styles.loader}>Loading data...</p>
+            <p className={styles.loaderInfo}>
+              Loading might take up to 50sec due to free plan hosting...
+            </p>
+          </div>
         ) : (
           <>
             <UserList users={filteredData} onDelete={handleDelete} />
