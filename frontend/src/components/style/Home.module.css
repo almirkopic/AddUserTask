@@ -156,6 +156,7 @@ th {
 
 .loaderInfo {
   font-style: italic;
+  margin: auto;
 }
 @media (max-width: 1150px) {
   .innerDiv {

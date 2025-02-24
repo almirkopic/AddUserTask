@@ -94,7 +94,7 @@ const Home: React.FC = () => {
         </div>
         {/* Show loading message if still loading */}
         {loading ? (
-          <div>
+          <div className={styles.loader_container}>
             <p className={styles.loader}>Loading data...</p>
             <p className={styles.loaderInfo}>
               Loading might take up to 50sec due to free plan hosting...
